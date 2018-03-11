@@ -1,12 +1,12 @@
 Name:           consul-template
-Version:        0.10.0
+Version:        0.19.4
 Release:        1%{?dist}
 Summary:        Generic template rendering and notifications with Consul
 
 Group:          System Environment/Daemons
 License:        MPLv2.0
 URL:            https://github.com/hashicorp/consul-template
-Source0:        https://github.com/hashicorp/consul-template/releases/download/v%{version}/%{name}_%{version}_linux_amd64.tar.gz
+Source0:        https://releases.hashicorp.com/consul-template/%{version}/%{name}_%{version}_linux_amd64.tgz
 Source1:        %{name}.service
 Source2:        %{name}.hcl
 BuildRoot:      %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
@@ -30,7 +30,7 @@ The daemon consul-template queries a Consul instance and updates any number of s
 
 %install
 mkdir -p %{buildroot}/%{_bindir}
-cp %{name}_%{version}_linux_amd64/consul-template %{buildroot}/%{_bindir}
+cp consul-template %{buildroot}/%{_bindir}
 mkdir -p %{buildroot}/%{_sysconfdir}/%{name}
 cp %{SOURCE2} %{buildroot}/%{_sysconfdir}/%{name}/
 
