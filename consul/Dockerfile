@@ -12,8 +12,8 @@ RUN rpmdev-setuptree
 RUN ln -s $HOME/consul-rpm/SPECS/consul.spec $HOME/rpmbuild/SPECS/
 RUN find $HOME/consul-rpm/SOURCES -type f -exec ln -s {} $HOME/rpmbuild/SOURCES/ \;
 
-RUN spectool -g -R rpmbuild/SPECS/consul.spec
-RUN rpmbuild -ba rpmbuild/SPECS/consul.spec
+RUN spectool --define "_version 0.9.2" -g -R rpmbuild/SPECS/consul.spec
+RUN rpmbuild --define "_version 0.9.2" -ba rpmbuild/SPECS/consul.spec
 
 VOLUME /out
 CMD find $HOME/rpmbuild -type d -name "RPMS" -exec cp -r {} /out/ \; && \
